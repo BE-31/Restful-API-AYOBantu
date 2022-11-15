@@ -10,7 +10,7 @@
     "password": "string",
     "name": "string",
     "national_id": "string",
-    "dob": "string",
+    "dob": "date",
     "contact": "string",
     "address": "string",
     "isDisability": "boolean",
