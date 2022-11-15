@@ -16,6 +16,7 @@
     "address": "string",
     "isDisability": "boolean",
     "typeOfDisability": "string",
+    "organization": "string",
     "proofs": [objectId],
     "helpNeeded": "string",
     "createdAt": "date",
@@ -41,7 +42,6 @@
 {
     "userId": "objectId",
     "title": "string",
-    "path": "string",
-    "organization": "string"
+    "path": "string"
 }
 ```
