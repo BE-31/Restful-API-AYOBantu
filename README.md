@@ -15,6 +15,8 @@
     "contact": "string",
     "address": "string",
     "isDisability": "boolean",
+    "typeOfDisability": "string",
+    "proofs": [objectId],
     "helpNeeded": "string",
     "createdAt": "date",
     "updatedAt": "date"
@@ -31,5 +33,15 @@
     "image": "string",
     "createdAt": "date",
     "updatedAt": "date"
+}
+```
+
+### Proof
+```javascript
+{
+    "userId": "objectId",
+    "title": "string",
+    "path": "string",
+    "organization": "string"
 }
 ```
