@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "name": "back-end-group-project",
+  "description": "```javascript\r {\r     \"role\": \"string\",\r     \"username\": \"string\",\r     \"password\": \"string\",\r     \"name\": \"string\",\r     \"national_id\": \"string\",\r     \"dob\": \"date\",\r     \"contact\": \"string\",\r     \"address\": \"string\",\r     \"isDisability\": \"boolean\",\r     \"typeOfDisability\": \"string\",\r     \"organization\": \"string\",\r     \"proofs\": [objectId],\r     \"helpNeeded\": \"string\",\r     \"createdAt\": \"date\",\r     \"updatedAt\": \"date\"\r }\r ```",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BE-31/Restful-API-AYOBantu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BE-31/Restful-API-AYOBantu/issues"
+  },
+  "homepage": "https://github.com/BE-31/Restful-API-AYOBantu#readme"
+}
