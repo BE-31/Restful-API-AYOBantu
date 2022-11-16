@@ -1,19 +1,16 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const db = require("./config/db");
 
 require("dotenv").config();
 
 //connect db
-try {
-    mongoose.connect(process.env.URL_DB, {
-        useUnifiedTopology: true,
-        useNewUrlParser: true
-    });
+db.then(() => {
     console.log("Connected to database");
-} catch(error) {
-    handleError(error);
-}
+}).catch((err) => {
+    console.log(err);
+})
 process.on('unhandledRejection', error => {
     console.log('unhandledRejection', error.message);
 });
