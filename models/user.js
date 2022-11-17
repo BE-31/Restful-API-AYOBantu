@@ -62,3 +62,9 @@ const userSchema = new Schema({
         type: Date
     }
 })
+
+//creating model
+const User = mongoose.model("User", userSchema);
+
+//export
+module.exports = User
