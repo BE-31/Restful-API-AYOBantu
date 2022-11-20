@@ -8,7 +8,6 @@ API ini dipergunakan untuk Aplikasi AYO Bantu yang bertujuan untuk mengumpulkan 
 | ------ | ------ | ------|
 | POST | /auth/registrasi | Membuat akun user baru |
 | POST | /auth/login | Masuk menggunakan akun yang sudah ada|
-| POST | /auth/login | Masuk menggunakan akun yang sudah ada|
 | GET | /article | Menampilkan list seluruh artikel|
 | GET | /article/:id | Menampilkan artikel berdasarkan ID|
 | POST | /article | Membuat artikel baru oleh user dengan role admin|
