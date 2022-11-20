@@ -1,70 +1,59 @@
-const { ObjectID, ObjectId } = require('bson');
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const { Schema } = mongoose
 
 const userSchema = new Schema({
-    role: {
-        type: String,
-        enum: ["admin", "user"],
-        required: [true, "Please specify your role"]
-    },
-    username: {
-        type: String,
-        unique: [true, "Username already taken"],
-        lowercase: true,
-        required: [true, "Username not provided"]
-    },
-    password : {
-        type: String,
-        required: true
-    },
-    name: {
-        type: String,
-        required: [true, "Name not provided"]
+  username: {
+    type: String,
+    unique: true,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  national_id: {
+    type: String,
+    required: true,
+  },
+  dob: {
+    type: Date,
+    required: true,
+  },
+  contact: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  isDisability: {
+    type: Boolean,
+    required: true,
+  },
+  typeOfDisability: {
+    type: String,
+  },
+  organization: {
+    type: String,
+  },
+  proofs: ObjectId,
+  helpNeeded: {
+    type: Text,
+    reqiured: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
+});
 
-    },
-    national_id: {
-        type: String,
-        required: [true, "National ID not provided"]
-    },
-    dob: {
-        type: Date,
-        required: [true, "Date of birth not provided"]
-    },
-    contact: {
-        type: String,
-        required: [true, "Contact not provided"]
-    },
-    address: {
-        type: String,
-        required: [true, "Address not provided"]
-    },
-    isDisability: {
-        type: Boolean,
-        required: [true, "Pleas choose your disability status"]
-    },
-    typeOfDisability: {
-        type: String,
-    },
-    organization: {
-        type: String,
-    },
-    proofs: ObjectId,
-    helpNeeded: {
-        type: String,
-        required: [true, "Please specify the help you needed not provided"]
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    updatedAt: {
-        type: Date
-    }
-})
-
-//creating model
-const User = mongoose.model("User", userSchema);
-
-//export
-module.exports = User
+module.exports = mongoose.model("User", userSchema);
