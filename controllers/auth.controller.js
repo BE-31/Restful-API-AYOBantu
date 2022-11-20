@@ -59,11 +59,11 @@ module.exports = {
 
     try {
         let user = await User.findOne({
-            email: data.email
+            username: data.username
         });
         if (user) {
             return res.status(400).json({
-                msg: "Email Already Exists"
+                msg: "Username Already Exists"
             });
         }
 
