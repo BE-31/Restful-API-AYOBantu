@@ -6,7 +6,7 @@ const userSchema = new Schema({
     role: {
         type: String,
         enum: ["admin", "user"],
-        required: [true, "Please specify your role"]
+        default: "user",
     },
     username: {
         type: String,
@@ -16,7 +16,7 @@ const userSchema = new Schema({
     },
     password : {
         type: String,
-        required: true
+        required: [true, "Password not provided"]
     },
     name: {
         type: String,

@@ -35,7 +35,8 @@ module.exports = {
 
       //signing token (using user id)
       const token = jwt.sign({
-        username:user.username
+        id: user.id,
+        role:user.role
       }, process.env.SECRET_KEY, {
         expiresIn: 86400
       });
@@ -45,12 +46,54 @@ module.exports = {
         user: {
           id:user._id,
           username: user.username,
-          name: user.name
+          name: user.name,
+          role: user.role
         },
         message: "You're Logged In",
         accessToken: token
       });
     });
-    
+  },
+  signUp: async (req, res) => {
+    const data = req.body;
+
+    try {
+        let user = await User.findOne({
+            email: data.email
+        });
+        if (user) {
+            return res.status(400).json({
+                msg: "Email Already Exists"
+            });
+        }
+
+        user = new User(data);
+
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(data.password, salt);
+
+        await user.save();
+
+        const payload = {
+          id: user.id,
+          role:user.role
+        };
+
+        jwt.sign(
+            payload,
+            process.env.SECRET_KEY, {
+                expiresIn: 10000
+            },
+            (err, token) => {
+                if (err) throw err;
+                res.status(200).json({
+                    token
+                });
+            }
+        );
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send("Error in Saving");
+    }
   }
 }
