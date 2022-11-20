@@ -3,9 +3,9 @@ const router = express.Router();
 const articleController = require('../controllers/article.controller.js');
 const auth = require('../middlewares/auth.js');
 
-router.get('/', auth(), articleController.getAllArticle);
+router.get('/', auth('getAll'), articleController.getAllArticle);
 
-router.get('/:id', auth(), articleController.getArticleById);
+router.get('/:id', auth('getById'), articleController.getArticleById);
 
 router.post('/', auth('create'), articleController.createArticle);
 
