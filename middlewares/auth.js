@@ -1,15 +1,16 @@
 const jwt = require('jsonwebtoken');
 
 const rolesRight = {
-    admin:['create','update','delete', 'deleteAll'],
-    user:[]
+    admin:['getAll','getById', 'create','update','delete', 'deleteAll'],
+    user:['getAll', 'getById']
 }
 
 const auth = (requireRight) => async (req,res,next) => {
-    const token = req.headers.authorization;
-    if (token) {
+    let token = req.headers.authorization;
+    if (token) {      
         try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            token = token.split(' ')[1];
+            const decoded = jwt.verify(token, process.env.SECRET_KEY);
             if (rolesRight[decoded.role].includes(requireRight)) {
                 next();
             }
