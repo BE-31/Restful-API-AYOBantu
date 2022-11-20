@@ -1,30 +1,27 @@
-const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
+const express = require("express")
+const app = express()
+
+// PORT
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+    console.log("Server Running on Port ", PORT)
+})
+
+// Database
 const db = require("./config/db");
 
-const allRoutes = require('./routes');
-
-require("dotenv").config();
-
-//connect db
-db.then(() => {
-    console.log("Connected to database");
+db.
+then(() => {
+  console.log("Database Connected");
 }).catch((err) => {
-    console.log(err);
-})
-process.on('unhandledRejection', error => {
-    console.log('unhandledRejection', error.message);
+  console.log(err);
 });
 
-app.use(express.json());
-app.use(express.urlencoded({
-    extended: true
-}));
+// Middleware
+app.use(express.json())
 
-app.use(allRoutes);
+// Routes
+const allRouter = require("./routes")
 
-//set server port
-app.listen(process.env.PORT || 3000, () => {
-    console.log("PORT 3000");
-})
+app.use(allRouter)
