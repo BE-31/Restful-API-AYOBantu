@@ -1,5 +1,6 @@
+const { ObjectID, ObjectId } = require("bson");
 const mongoose = require("mongoose");
-const { Schema } = mongoose
+const { Schema } = mongoose;
 
 const userSchema = new Schema({
   username: {
@@ -48,7 +49,7 @@ const userSchema = new Schema({
   proofs: ObjectId,
   helpNeeded: {
     type: Text,
-    reqiured: true
+    reqiured: true,
   },
   createdAt: {
     type: Date,
