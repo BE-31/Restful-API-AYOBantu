@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const rolesRight = {
     admin:['getAll','getById', 'create','update','delete', 'deleteAll'],
-    user:['getAll', 'getById']
+    user:['getAll', 'getById', 'campaign']
 }
 
 const auth = (requireRight) => async (req,res,next) => {
