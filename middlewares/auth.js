@@ -4,11 +4,20 @@ const rolesRight = {
   admin: [
     "getAllCampaign",
     "getCampaignByCategory",
-    "updateCampaignById"
+    "updateCampaignById",
+    "getAll",
+    "getById",
+    "create",
+    "update",
+    "delete",
+    "deleteAll",
   ],
   user: [
-    "getCampaignByIdUser", 
-    "createCampaign"]
+    "getCampaignByIdUser",
+    "createCampaign",
+    "getAll",
+    "getById"
+],
 };
 
 const auth = (requireRight) => async (req,res,next) => {
