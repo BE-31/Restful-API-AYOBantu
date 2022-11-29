@@ -19,6 +19,6 @@ router.post("/", auth("createCampaign"), campaignController.createCampaign);
 router.put('/:id', auth('updateCampaignById'), campaignController.updateCampaignById);
 
 //delete campaign by id
-// router.delete('/:id', auth('campaign'), campaignController.deleteCampaignById);
+router.delete('/:id', campaignController.deleteCampaignById);
 
 module.exports = router;

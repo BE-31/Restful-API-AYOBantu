@@ -124,17 +124,17 @@ module.exports = {
     },
 
     //delete campaign by id
-    // deleteCampaignById: async (req, res) => {
-    //   const id = req.params.id
-    //   const data = req.body
+    deleteCampaignById: async (req, res) => {
+      const id = req.params.id
+      const data = req.body
 
-    //   if(!mongoose.Types.ObjectId.isValid(id)) {
-    //     return res.status(404).send(`Todo dengan id : ${id} tidak ditemukan`)
-    //   }
+      if(!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).send(`Todo dengan id : ${id} tidak ditemukan`)
+      }
   
-    //   await Campaign.findByIdAndRemove(id)
-    //   res.status(200).json({
-    //     message: "Success"
-    //   })
-    // }
+      await Campaign.findByIdAndRemove(id)
+      res.status(200).json({
+        message: "Success"
+      })
+    }
 }
