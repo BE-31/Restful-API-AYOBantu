@@ -25,33 +25,24 @@ module.exports = {
 
     //get campaign by id
     getCampaignByIdUser: async (req, res) => {
-    const valid = mongoose.Types.ObjectId.isValid(req.params.id);
+     const user = req.params.id
       try {
-        if(valid) {
-         const campaign = await Campaign.find({user: req.params.id});
-         if (campaign) {
-           res.status(200).json({
-             message: "Success get campaign by id user",
-             data: article,
-           });
-         }
-        }
-      } catch(error) {
-        if (error.name == "NotFoundError") {
-          res.status(404).json({
-            message: "Not Found Error"
-          });
-        }
-        else if(error.name == "ValidationError") {
-          res.status(400).json({
-            message: "Validation Error"
-          });        
-        }
-        else {
-          res.status(500).json({
-            message: "Server Error"
-          });
-        }
+        const campaign = await Campaign.find({"user": user}, (err, result) => {
+          if (result.length === 0) {
+            res.status(200).json({
+              message: "There's no campaign in this user yet"
+            })
+          } else {
+            res.status(200).json({
+              message: "Success",
+              data: result
+            })
+          }
+        }).clone()
+      } catch(err) {
+        res.status(404).json({
+          message: err.message
+        })
       }
     },
 
