@@ -49,21 +49,6 @@ const userSchema = new Schema({
         type: String,
         required: [true, "Address not provided"]
     },
-    isDisability: {
-        type: Boolean,
-        required: [true, "Pleas choose your disability status"]
-    },
-    typeOfDisability: {
-        type: String,
-    },
-    organization: {
-        type: String,
-    },
-    proofs: ObjectId,
-    helpNeeded: {
-        type: String,
-        required: [true, "Please specify the help you needed not provided"]
-    },
     emailToken: {
         type: String,
     },
