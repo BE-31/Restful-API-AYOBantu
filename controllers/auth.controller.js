@@ -95,7 +95,7 @@ module.exports = {
         };
 
         // Send Email
-        const url = `http://localhost:3000/auth/verification/${emailToken}`;
+        const url = `${process.env.FRONTEND_URL}/auth/verification/${emailToken}`;
         
         let transporter = nodemailer.createTransport({
           host: process.env.SMTP_HOST,
