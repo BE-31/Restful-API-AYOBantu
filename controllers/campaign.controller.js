@@ -5,7 +5,7 @@ module.exports = {
     //get all verified campaign data
     getAllCampaign: async (req, res) => {
         try {
-            const campaign = await Campaign.find({"status": "terverifikasi"}).populate("user", "name")
+            const campaign = await Campaign.find();
             if(campaign.length === 0) {
                 res.status(200).json({
                   message: "There's no campaign yet"
@@ -24,31 +24,25 @@ module.exports = {
     },
 
     //get campaign by id
-    getCampaignById: async (req, res) => {
-      const id = req.params.id
+    getCampaignByIdUser: async (req, res) => {
+     const user = req.params.id
       try {
-        const campaign = await Campaign.findById(id)
-
-        res.status(200).json({
-          message: "Success",
-          data: campaign
+        const campaign = await Campaign.find({"user": user}, (err, result) => {
+          if (result.length === 0) {
+            res.status(200).json({
+              message: "There's no campaign in this user yet"
+            })
+          } else {
+            res.status(200).json({
+              message: "Success",
+              data: result
+            })
+          }
+        }).clone()
+      } catch(err) {
+        res.status(404).json({
+          message: err.message
         })
-      } catch(error) {
-        if (error.name == "NotFoundError") {
-          res.status(404).json({
-            message: "Not Found Error"
-          });
-        }
-        else if(error.name == "ValidationError") {
-          res.status(400).json({
-            message: "Validation Error"
-          });        
-        }
-        else {
-          res.status(500).json({
-            message: "Server Error"
-          });
-        }
       }
     },
 
@@ -109,18 +103,24 @@ module.exports = {
     //update campaign
     updateCampaignById: async (req, res) => {
       const id = req.params.id
+      const valid = mongoose.Types.ObjectId.isValid(id)
       const data = req.body
-
-      if(!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).send(`Campaign : ${id} not found`)
+      try {
+      if (!valid) {
+        return res.status(404).send(`Campaign : ${id} not found`);
       }
-      
-      await Campaign.findByIdAndUpdate(id, data, {new: true})
-      const new_campaign = await Campaign.findById(id)
+
+      await Campaign.findByIdAndUpdate(id, data, { new: true });
+      const new_campaign = await Campaign.findById(id);
       res.status(200).json({
         message: "Update Success",
-        data: new_campaign
-      })
+        data: new_campaign,
+      });
+    } catch{
+        res.status(500).json({
+          message: "Server Error",
+        });
+    }
     },
 
     //delete campaign by id

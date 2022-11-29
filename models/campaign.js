@@ -30,6 +30,9 @@ const campaignSchema = new Schema({
         enum: ['belum terverifikasi', 'terverifikasi', 'ditolak'],
         default: "belum terverifikasi"
     },
+    keterangan: {
+        type: String
+    },
     createdAt: {
         type: Date,
         default: Date.now
