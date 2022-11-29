@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
+const nodemailer = require("nodemailer");
 
 module.exports = {
   signin: (req, res) => {
@@ -54,8 +55,9 @@ module.exports = {
       });
     });
   },
+
   signUp: async (req, res) => {
-    const data = req.body;
+    let data = req.body;
 
     try {
         let user = await User.findOne({
@@ -65,6 +67,19 @@ module.exports = {
             return res.status(400).json({
                 msg: "Username Already Exists"
             });
+        }
+
+        const emailToken = jwt.sign({
+          username: req.id,
+          role:req.role | "user",
+          type: "email"
+        }, process.env.SECRET_KEY, {
+          expiresIn: 3600
+        });
+
+        data = {
+          ...data,
+          emailToken
         }
 
         user = new User(data);
@@ -78,6 +93,34 @@ module.exports = {
           id: user.id,
           role:user.role
         };
+
+        // Send Email
+        const url = `http://localhost:3000/auth/verification/${emailToken}`;
+        
+        let transporter = nodemailer.createTransport({
+          host: process.env.SMTP_HOST,
+          port: process.env.SMTP_PORT,
+          secure: process.env.SMTP_SECURE === 'false'? false : true,
+          auth: {
+              user: process.env.SMTP_USER,
+              pass: process.env.SMTP_PASS, 
+          },
+        });
+
+        const message = `
+          <h1>Segera Aktivasi Akun Kamu!!!</h1>
+          <p>Klik link dibawah ini untuk mengaktifkan akun kamu</p>
+          <p><a href=${url}>${url}</a></p>
+          <hr />
+          <p>Link ini akan kadaluarsa dalam 1 jam</p>
+          <p>Ini adalah email otomatis, mohon untuk tidak membalas email ini</p>
+        `;
+        await transporter.sendMail({
+          from: process.env.SMTP_USER,
+          to: user.email,
+          subject: "Aktivasi Akun AYO Bantu!",
+          html: message
+        });
 
         jwt.sign(
             payload,
@@ -94,6 +137,33 @@ module.exports = {
     } catch (err) {
         console.log(err.message);
         res.status(500).send("Error in Saving");
+    }
+  },
+
+  verification: async (req, res) => {
+    const { token } = req.params;
+    try {
+      const decoded = jwt.verify(token, process.env.SECRET_KEY);
+      if(decoded.type !== "email") {
+        return res.status(400).json({
+          msg: "Invalid Token"
+        });
+      }
+      else {
+        const user = await User.findOne({
+          emailToken: token
+        });
+        if(user){
+          user.isVerified = true;
+          await user.save();
+          res.status(200).json({
+            msg: "Your account has been activated"
+          })
+        }
+      }
+    } catch (err) {
+      console.log(err.message);
+      res.status(500).send("Error in Saving");
     }
   }
 }

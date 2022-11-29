@@ -14,6 +14,16 @@ const userSchema = new Schema({
         lowercase: true,
         required: [true, "Username not provided"]
     },
+    email: {
+        type: String,
+        unique: [true, "Email already taken"],
+        lowercase: true,
+        required: [true, "Email not provided"]
+    },
+    isVerified : {
+        type: Boolean,
+        default: false
+    },
     password : {
         type: String,
         required: [true, "Password not provided"]
@@ -53,6 +63,9 @@ const userSchema = new Schema({
     helpNeeded: {
         type: String,
         required: [true, "Please specify the help you needed not provided"]
+    },
+    emailToken: {
+        type: String,
     },
     createdAt: {
         type: Date,
