@@ -4,7 +4,7 @@ const router = express.Router();
 
 const authRouter = require('./auth.router');
 const articleRouter = require('./article.router');
-const campaignRouter = require('../routes/campaign.routes');
+const campaignRouter = require('./campaign.router');
 
 router.use("/auth", authRouter);
 router.use('/article', articleRouter);

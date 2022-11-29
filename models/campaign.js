@@ -1,8 +1,12 @@
+const { ObjectID, ObjectId } = require('bson');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const campaignSchema = new Schema({
-    user: ObjectId,
+    user: {
+        type: mongoose.ObjectId,
+        ref: "User"
+    },
     title: {
         type: String,
         required: [true, "Title not provided"]
@@ -17,12 +21,12 @@ const campaignSchema = new Schema({
 
     },
     category: {
-        type: string,
+        type: String,
         enum: ['pendidikan', 'kesehatan', 'modal'],
         required: [true, "Category not provided"]
     },
     status: {
-        type: string,
+        type: String,
         enum: ['belum terverifikasi', 'terverifikasi', 'ditolak'],
         default: "belum terverifikasi"
     },
