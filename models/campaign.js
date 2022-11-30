@@ -11,6 +11,10 @@ const campaignSchema = new Schema({
         type: String,
         required: [true, "Title not provided"]
     },
+    helpNeeded: {
+        type: String,
+        required: [true, "Help needed not provided"]
+    },
     description: {
         type: String,
         required: [true, "Description not provided"]
@@ -18,7 +22,10 @@ const campaignSchema = new Schema({
     image: {
         type: String,
         required: [true, "Image not provided"]
-
+    },
+    supportingFile: {
+        type: String,
+        required: [true, "Supporting File not provided"]
     },
     category: {
         type: String,
