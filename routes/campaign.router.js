@@ -10,7 +10,7 @@ router.get("/all", auth("getAllCampaign"), campaignController.getAllCampaign);
 router.get("/", campaignController.getAllVerifiedCampaign);
 
 //get all campaign by a user
-router.get("/user/:id", campaignController.getCampaignByIdUser);
+router.get("/user/:id", auth("getCampaignByIdUser"), campaignController.getCampaignByIdUser);
 
 //get campaign by id
 router.get("/:id", campaignController.getCampaignById);

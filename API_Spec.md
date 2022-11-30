@@ -1,5 +1,46 @@
 # API SPEC
 
+## Register
+---
+Authentication : -\
+Request :
+- Method : POST
+- Endpoint : /auth/signup
+- Body :
+```json
+{
+    "photo": "String",
+    "username": "String",
+    "email": "String",
+    "password": "String",
+    "name": "String",
+    "national_id": "String",
+    "dob": "String",
+    "contact": "String",
+    "address": "String"
+}
+```
+Response :
+```json
+{
+    "token": "String"
+}
+```
+
+## Verification
+---
+Authentication : -\
+Request :
+- Method : GET
+- Endpoint : /auth/verification/:token
+- Body : -
+- Response :
+```json
+{
+  "message": "String"
+}
+```
+
 ## Login
 ---
 Authentication : -\
@@ -24,19 +65,6 @@ Response :
   },
   "message": "String",
   "accessToken": "String"
-}
-```
-## Verification
----
-Authentication : -\
-Request :
-- Method : GET
-- Endpoint : /auth/verification/:token
-- Body : -
-- Response :
-```json
-{
-  "message": "String"
 }
 ```
 
@@ -145,40 +173,44 @@ Request :
 Response :
 ```json
 {
-  "message": "String",
-  "data": [
-    {
-      "_id": "ObjectId",
-      "user": {
+  {
+    "message": "String",
+    "data": [
+      {
         "_id": "ObjectId",
-        "name": "String"
-      },
-      "title": "String",
-      "description": "String",
-      "image": "String",
-      "category": "String",
-      "status": "String",
-      "createdAt": "Date",
-      "__v": 0
-    },
-{
-  "message": "String",
-  "data": [
-    {
-      "_id": "ObjectId",
-      "user": {
+        "user": {
+          "_id": "ObjectId",
+          "name": "String"
+        },
+        "title": "String",
+        "description": "String",
+        "image": "String",
+        "category": "String",
+        "status": "String",
+        "createdAt": "Date",
+        "__v": 0
+      }
+    ]
+  },
+  {
+    "message": "String",
+    "data": [
+      {
         "_id": "ObjectId",
-        "name": "String"
-      },
-      "title": "String",
-      "description": "String",
-      "image": "String",
-      "category": "String",
-      "status": "String",
-      "createdAt": "Date",
-      "__v": 0
-    }
-  ]
+        "user": {
+          "_id": "ObjectId",
+          "name": "String"
+        },
+        "title": "String",
+        "description": "String",
+        "image": "String",
+        "category": "String",
+        "status": "String",
+        "createdAt": "Date",
+        "__v": 0
+      }
+    ]
+  }
 }
 ```
 
@@ -278,6 +310,35 @@ Response :
 
 ## Update Campaign
 ---
+Authentication : **Admin**\
+Request :
+- Method : PUT
+- Endpoint : /campaign/{campaign_id}
+- Body :
+```json
+{
+   "status": "String",
+   "keterangan": "String"
+}
+```
+Response :
+```json
+{
+    "message": "String",
+    "data": {
+        "_id": "ObjectId",
+        "user": "ObjectId",
+        "title": "String",
+        "description": "String",
+        "image": "String",
+        "category": "String",
+        "status": "String",
+        "createdAt": "Date",
+        "__v": 0,
+        "keterangan": "String"
+    }
+}
+```
 
 ## Delete Campaign By Id
 ---
