@@ -59,7 +59,7 @@ module.exports = {
               data: result
             })
           }
-        }).clone()
+        }).populate("user", "name").clone()
       } catch(err) {
         res.status(404).json({
           message: err.message
