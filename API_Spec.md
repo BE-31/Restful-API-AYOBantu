@@ -2,7 +2,7 @@
 
 ## Login
 ---
-Authentication : -
+Authentication : -\
 Request :
 - Method : POST
 - Endpoint : /auth/login
@@ -23,13 +23,26 @@ Response :
     "role": "String"
   },
   "message": "String",
-  "accessToken": String"
+  "accessToken": "String"
+}
+```
+## Verification
+---
+Authentication : -\
+Request :
+- Method : GET
+- Endpoint : /auth/verification/:token
+- Body : -
+- Response :
+```json
+{
+  "message": "String"
 }
 ```
 
 ## Create Campaign
 ---
-Authentication : **User**
+Authentication : **User**\
 Request :
 - Method : POST
 - Endpoint : /campaign
@@ -66,7 +79,7 @@ Response :
 
 ## Get All Campaign Data
 ---
-Authentication : **Admin**
+Authentication : **Admin**\
 Request :
 - Method : GET
 - Endpoint : /campaign/all
@@ -124,7 +137,7 @@ Response :
 
 ## Get Verified Campaign Data
 ---
-Authentication : -
+Authentication : -\
 Request :
 - Method : GET
 - Endpoint : /campaign
@@ -171,7 +184,7 @@ Response :
 
 ## Get All Campaign By A User
 ---
-Authentication : **User**
+Authentication : **User**\
 Request :
 - Method : GET
 - Endpoint : /campaign/user/{user_id}
@@ -215,7 +228,7 @@ Response :
 
 ## Get A Campaign By Id
 ---
-Authentication : -
+Authentication : -\
 Request :
 - Method : GET
 - Endpoint : /campaign/{campaign_id}
@@ -240,7 +253,7 @@ Response :
 
 ## Get Campaign By Category
 ---
-Authentication : -
+Authentication : -\
 Request :
 - Method : GET
 - Endpoint : /campaign/kategori/{nama_kategori}
@@ -268,7 +281,7 @@ Response :
 
 ## Delete Campaign By Id
 ---
-Authentication : -
+Authentication : -\
 Request :
 - Method : DELETE
 - Endpoint : /campaign/{campaign_id}
