@@ -110,7 +110,9 @@ module.exports = {
         const message = `
           <h1>Segera Aktivasi Akun Kamu!!!</h1>
           <p>Klik link dibawah ini untuk mengaktifkan akun kamu</p>
-          <p><a href=${url}>${url}</a></p>
+          <button"><a href="${url}">Aktivasi</a></button>
+          <p>Jika tombol tidak berfungsi, copy link dibawah ini ke browser kamu</p>
+          <p>${url}</p>
           <hr />
           <p>Link ini akan kadaluarsa dalam 1 jam</p>
           <p>Ini adalah email otomatis, mohon untuk tidak membalas email ini</p>
@@ -155,6 +157,7 @@ module.exports = {
         });
         if(user){
           user.isVerified = true;
+          user.emailToken = "";
           await user.save();
           res.status(200).json({
             message: "Your account has been activated"
