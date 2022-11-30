@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const rolesRight = {
   admin: [
     "getAllCampaign",
-    "getCampaignByCategory",
     "updateCampaignById",
     "getAll",
     "getById",
