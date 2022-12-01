@@ -18,6 +18,9 @@ router.get("/:id", campaignController.getCampaignById);
 //get campaign by kategori
 router.get('/kategori/:id', campaignController.getCampaignByCategory);
 
+//get verified campaign by category
+router.get('/kategori/ver/:id', auth("getAllCampaign"), campaignController.getVerifiedCampaignByCategory);
+
 //create campaign
 router.post("/", auth("createCampaign"), campaignController.createCampaign);
 
