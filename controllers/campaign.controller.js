@@ -119,6 +119,28 @@ module.exports = {
       }
     },
 
+    //get verified campaign by category
+    getVerifiedCampaignByCategory: async (req, res) => {
+      const category = req.params.id
+      try {
+        const campaign = await Campaign.find({"category": category, "status": "terverifikasi"}, (err, result) => {
+          if (result.length === 0) {
+            res.status(200).json({
+              message: "There's no campaign in this category yet"
+            })
+          } else {
+            res.status(200).json({
+              message: "Success",
+              data: result
+            })
+          }
+        }).populate("user", "name").clone()
+      } catch(err) {
+        res.status(404).json({
+          message: err.message
+        })
+      }
+    },   
     //create new campaign
     createCampaign: (req, res) => {
         try {
