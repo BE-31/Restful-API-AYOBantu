@@ -285,7 +285,7 @@ Response :
 
 ## Get Campaign By Category
 ---
-Authentication : -\
+Authentication : admin
 Request :
 - Method : GET
 - Endpoint : /campaign/kategori/{nama_kategori}
@@ -307,7 +307,30 @@ Response :
   }
 }
 ```
+## Get Verified Campaign By Category
+---
+Authentication : -
+Request :
+- Method : GET
+- Endpoint : /campaign/kategori/ver/{nama_kategori}
 
+Response :
+```json
+{
+  "message": "String",
+  "data": {
+    "_id": "ObjectId",
+    "user": "ObjectId",
+    "title": "String",
+    "description": "String",
+    "image": "String",
+    "category": "String",
+    "status": "String",
+    "createdAt": "Date",
+    "__v": 0
+  }
+}
+```
 ## Update Campaign
 ---
 Authentication : **Admin**\
