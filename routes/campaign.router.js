@@ -16,10 +16,11 @@ router.get("/user/:id", auth("getCampaignByIdUser"), campaignController.getCampa
 router.get("/:id", campaignController.getCampaignById);
 
 //get campaign by kategori
-router.get('/kategori/:id',  campaignController.getCampaignByCategory);
+router.get('/kategori/:id', auth("getAllCampaign"),campaignController.getCampaignByCategory);
+
 
 //get verified campaign by category
-router.get('/kategori/ver/:id', auth("getAllCampaign"), campaignController.getVerifiedCampaignByCategory);
+router.get('/kategori/ver/:id', campaignController.getVerifiedCampaignByCategory);
 
 //create campaign
 router.post("/", auth("createCampaign"), campaignController.createCampaign);
