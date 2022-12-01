@@ -157,13 +157,15 @@ module.exports = {
           user.isVerified = true;
           await user.save();
           res.status(200).json({
-            msg: "Your account has been activated"
+            message: "Your account has been activated"
           })
         }
       }
     } catch (err) {
       console.log(err.message);
-      res.status(500).send("Error in Saving");
+      res.status(500).json({
+        message: "Server Error"
+      });
     }
   }
 }

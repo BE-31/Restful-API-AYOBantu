@@ -1,46 +1,49 @@
 # API SPEC
----
 
-## Registrasi
-Authentication : -
+## Register
+---
+Authentication : -\
 Request :
 - Method : POST
 - Endpoint : /auth/signup
 - Body :
 ```json
 {
-  "user": "ObjectId",
-  "title": "String",
-  "address": "String",
-  "description": "String",
-  "image": "String",
-  "supportingFile1": "String",
-  "supportingFile2": "String",
-  "category": "String"
+    "photo": "String",
+    "username": "String",
+    "email": "String",
+    "password": "String",
+    "name": "String",
+    "national_id": "String",
+    "dob": "String",
+    "contact": "String",
+    "address": "String"
 }
 ```
 Response :
 ```json
 {
-  "message": "String",
-  "data": {
-    "user": "ObjectId",
-    "title": "String",
-    "address": "String",
-    "description": "String",
-    "image": "String",
-    "supportingFile1": "String",
-    "supportingFile2": "String",
-    "category": "String",
-    "status": "String",
-    "_id": "ObjectId",
-    "createdAt": "Date"
-  }
+    "token": "String"
+}
+```
+
+## Verification
+---
+Authentication : -\
+Request :
+- Method : GET
+- Endpoint : /auth/verification/:token
+- Body : -
+- Response :
+```json
+{
+  "message": "String"
 }
 ```
 
 ## Login
-Authentication : -
+---
+Authentication : -\
 Request :
 - Method : POST
 - Endpoint : /auth/login
@@ -66,7 +69,8 @@ Response :
 ```
 
 ## Create Campaign
-Authentication : **User**
+---
+Authentication : **User**\
 Request :
 - Method : POST
 - Endpoint : /campaign
@@ -102,7 +106,8 @@ Response :
 ```
 
 ## Get All Campaign Data
-Authentication : **Admin**
+---
+Authentication : **Admin**\
 Request :
 - Method : GET
 - Endpoint : /campaign/all
@@ -159,7 +164,8 @@ Response :
 ```
 
 ## Get Verified Campaign Data
-Authentication : -
+---
+Authentication : -\
 Request :
 - Method : GET
 - Endpoint : /campaign
@@ -167,47 +173,50 @@ Request :
 Response :
 ```json
 {
-  "message": "String",
-  "data": [
-    {
-      "_id": "ObjectId",
-      "user": {
+  {
+    "message": "String",
+    "data": [
+      {
         "_id": "ObjectId",
-        "name": "String"
-      },
-      "title": "String",
-      "description": "String",
-      "image": "String",
-      "category": "String",
-      "status": "String",
-      "createdAt": "Date",
-      "__v": 0
-    }
-  ],
-{
-  "message": "String",
-  "data": [
-    {
-      "_id": "ObjectId",
-      "user": {
+        "user": {
+          "_id": "ObjectId",
+          "name": "String"
+        },
+        "title": "String",
+        "description": "String",
+        "image": "String",
+        "category": "String",
+        "status": "String",
+        "createdAt": "Date",
+        "__v": 0
+      }
+    ]
+  },
+  {
+    "message": "String",
+    "data": [
+      {
         "_id": "ObjectId",
-        "name": "String"
-      },
-      "title": "String",
-      "description": "String",
-      "image": "String",
-      "category": "String",
-      "status": "String",
-      "createdAt": "Date",
-      "__v": 0
-    }
-  ]
-}
+        "user": {
+          "_id": "ObjectId",
+          "name": "String"
+        },
+        "title": "String",
+        "description": "String",
+        "image": "String",
+        "category": "String",
+        "status": "String",
+        "createdAt": "Date",
+        "__v": 0
+      }
+    ]
+  }
 }
 ```
 
 ## Get All Campaign By A User
-Authentication : **User**
+---
+Authentication : **User**\
 Request :
 - Method : GET
 - Endpoint : /campaign/user/{user_id}
@@ -250,7 +259,8 @@ Response :
 ```
 
 ## Get A Campaign By Id
-Authentication : -
+---
+Authentication : -\
 Request :
 - Method : GET
 - Endpoint : /campaign/{campaign_id}
@@ -274,7 +284,8 @@ Response :
 ```
 
 ## Get Campaign By Category
-Authentication : -
+---
+Authentication : -\
 Request :
 - Method : GET
 - Endpoint : /campaign/kategori/{nama_kategori}
@@ -299,9 +310,39 @@ Response :
 
 ## Update Campaign
 ---
+Authentication : **Admin**\
+Request :
+- Method : PUT
+- Endpoint : /campaign/{campaign_id}
+- Body :
+```json
+{
+   "status": "String",
+   "keterangan": "String"
+}
+```
+Response :
+```json
+{
+    "message": "String",
+    "data": {
+        "_id": "ObjectId",
+        "user": "ObjectId",
+        "title": "String",
+        "description": "String",
+        "image": "String",
+        "category": "String",
+        "status": "String",
+        "createdAt": "Date",
+        "__v": 0,
+        "keterangan": "String"
+    }
+}
+```
 
 ## Delete Campaign By Id
-Authentication : -
+---
+Authentication : -\
 Request :
 - Method : DELETE
 - Endpoint : /campaign/{campaign_id}
