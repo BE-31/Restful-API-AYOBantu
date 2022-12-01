@@ -1,7 +1,45 @@
 # API SPEC
+---
+
+## Registrasi
+Authentication : -
+Request :
+- Method : POST
+- Endpoint : /auth/signup
+- Body :
+```json
+{
+  "user": "ObjectId",
+  "title": "String",
+  "address": "String",
+  "description": "String",
+  "image": "String",
+  "supportingFile1": "String",
+  "supportingFile2": "String",
+  "category": "String"
+}
+```
+Response :
+```json
+{
+  "message": "String",
+  "data": {
+    "user": "ObjectId",
+    "title": "String",
+    "address": "String",
+    "description": "String",
+    "image": "String",
+    "supportingFile1": "String",
+    "supportingFile2": "String",
+    "category": "String",
+    "status": "String",
+    "_id": "ObjectId",
+    "createdAt": "Date"
+  }
+}
+```
 
 ## Login
----
 Authentication : -
 Request :
 - Method : POST
@@ -23,12 +61,11 @@ Response :
     "role": "String"
   },
   "message": "String",
-  "accessToken": String"
+  "accessToken": "String"
 }
 ```
 
 ## Create Campaign
----
 Authentication : **User**
 Request :
 - Method : POST
@@ -65,7 +102,6 @@ Response :
 ```
 
 ## Get All Campaign Data
----
 Authentication : **Admin**
 Request :
 - Method : GET
@@ -123,7 +159,6 @@ Response :
 ```
 
 ## Get Verified Campaign Data
----
 Authentication : -
 Request :
 - Method : GET
@@ -147,7 +182,8 @@ Response :
       "status": "String",
       "createdAt": "Date",
       "__v": 0
-    },
+    }
+  ],
 {
   "message": "String",
   "data": [
@@ -167,10 +203,10 @@ Response :
     }
   ]
 }
+}
 ```
 
 ## Get All Campaign By A User
----
 Authentication : **User**
 Request :
 - Method : GET
@@ -214,7 +250,6 @@ Response :
 ```
 
 ## Get A Campaign By Id
----
 Authentication : -
 Request :
 - Method : GET
@@ -239,7 +274,6 @@ Response :
 ```
 
 ## Get Campaign By Category
----
 Authentication : -
 Request :
 - Method : GET
@@ -267,7 +301,6 @@ Response :
 ---
 
 ## Delete Campaign By Id
----
 Authentication : -
 Request :
 - Method : DELETE
