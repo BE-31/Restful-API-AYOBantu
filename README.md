@@ -1,7 +1,7 @@
 # Restful-API-AYOBantu
 
 ## Documentation
-API ini dipergunakan untuk Aplikasi AYO Bantu yang bertujuan untuk mengumpulkan pemuda ASEAN yang memerlukan bantuan baik berupa dana maupun bantuan lainnya dibawah naungan ASEAN Youth Organization. API ini mendukung login serta registrasi user baru, serta CRUD artikel yang dapat dilakukan oleh user dengan role admin.
+API ini dipergunakan untuk Aplikasi AYO Bantu yang bertujuan untuk mengumpulkan pemuda ASEAN yang memerlukan bantuan baik berupa dana maupun bantuan lainnya dibawah naungan ASEAN Youth Organization. API ini mendukung login serta registrasi user baru yang dilengkapi dengan verifikasi e-mail, serta CRUD campaign yang dapat dilakukan oleh user dan dapat diverifikasi oleh admin.
 
 ## Register
 ---
