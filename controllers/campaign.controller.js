@@ -16,7 +16,10 @@ module.exports = {
               data: result
             })
           }
-        }).populate("user", "name").clone()
+        }).populate({
+          path: 'user',
+          select: 'name contact'
+        }).clone()
       } catch (err) {
           res.status(404).json({
               message: err.message
@@ -26,7 +29,10 @@ module.exports = {
     //get all campaign data
     getAllCampaign: async (req, res) => {
         try {
-            const campaign = await Campaign.find().populate("user", "name");
+            const campaign = await Campaign.find().populate({
+              path: 'user',
+              select: 'name contact'
+            });
             if(campaign.length === 0) {
                 res.status(200).json({
                   message: "There's no campaign yet"
@@ -59,7 +65,10 @@ module.exports = {
               data: result
             })
           }
-        }).populate("user", "name").clone()
+        }).populate({
+          path: 'user',
+          select: 'name contact'
+        }).clone()
       } catch(err) {
         res.status(404).json({
           message: err.message
@@ -71,7 +80,10 @@ module.exports = {
     getCampaignById: async (req, res) => {
       const id = req.params.id
       try {
-        const campaign = await Campaign.findById(id)
+        const campaign = await Campaign.findById(id).populate({
+          path: 'user',
+          select: 'name contact'
+        })
 
         res.status(200).json({
           message: "Success",
@@ -111,7 +123,10 @@ module.exports = {
               data: result
             })
           }
-        }).populate("user", "name").clone()
+        }).populate({
+          path: 'user',
+          select: 'name contact'
+        }).clone()
       } catch(err) {
         res.status(404).json({
           message: err.message
@@ -134,7 +149,10 @@ module.exports = {
               data: result
             })
           }
-        }).populate("user", "name").clone()
+        }).populate({
+          path: 'user',
+          select: 'name contact'
+        }).clone()
       } catch(err) {
         res.status(404).json({
           message: err.message
